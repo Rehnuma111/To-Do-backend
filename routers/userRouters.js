@@ -37,5 +37,19 @@ router.post("/check-login", (req, res) => {
       res.status(500).json(err);
     });
 });
+//getall
+
+router.get("/getall", (req, res) => {
+  Model.find({})
+    .then((data)=>{
+      console.log(data);
+      res.status(200).json(data);
+
+    })
+    .catch((err)=>{
+      console.log(err);
+      res.status(500).json(err);
+    })
+})
 
 module.exports = router;

@@ -16,17 +16,20 @@ const cors = require("cors");
 const port = 5000;
 
 // to allow your frontend
-app.use(cors({ origin: ["http://localhost:3000"] }));
+app.use(cors({ origin: ["http://localhost:3000", process.env.HOSTED_URL] }));
 
 //middleware
 app.use("/user", userRouters);
 app.use("/todo", TodoRouter);
+
 
 //lets connect to mongodb..
 mongoose
   .connect(process.env.DB)
   .then(() => {
     console.log("DB Connected");
+    // console.log(process.env.HOSTED_URL);
+
   })
   .catch((err) => {
     console.log("DB not connected");
